@@ -68,3 +68,26 @@ def show_leaderboard():
                     print(f"{i}. {name}: WPM - {wpm}, Errors - {errors}")
     except FileNotFoundError:
         print("Leaderboard not found. No scores yet.")
+def update_leaderboard(name, wpm, errors):
+    try:
+        filename = "leaderboard.txt"
+        with open(filename, "r") as file:
+            lines = file.readlines()
+
+        found = False
+        for i in range(len(lines)):
+            data = lines[i].strip().split(",")
+            if len(data) >= 3 and data[0] == name:
+                lines[i] = f"{name},{wpm},{errors}\n"
+                found = True
+                break
+
+        if not found:
+            lines.append(f"{name},{wpm},{errors}\n")
+
+        with open(filename, "w") as file:
+            file.writelines(lines)
+
+    except FileNotFoundError:
+        with open(filename, "w") as file:
+            file.write(f"{name},{wpm},{errors}\n")
