@@ -91,3 +91,25 @@ def update_leaderboard(name, wpm, errors):
     except FileNotFoundError:
         with open(filename, "w") as file:
             file.write(f"{name},{wpm},{errors}\n")
+def main():
+    print("Welcome to Typing Speed Checker!")
+
+    name = login()
+        
+    print("\nMenu:")
+    print("1. Start typing")
+    print("2. Show leaderboard")
+    print("3. Exit")
+    choice = input("Enter your choice (1/2/3): ")
+    if choice == "1":
+        wpm, errors = start_typing()
+        update_leaderboard(name, wpm, errors)
+    elif choice == "2":
+        show_leaderboard()
+    elif choice == "3":
+        print("Thank you for using Typing Speed Checker. Goodbye!")
+        return
+    else:
+        print("Invalid choice. Please enter 1, 2, or 3.")
+
+main()
