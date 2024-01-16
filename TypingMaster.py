@@ -46,3 +46,25 @@ def start_typing():
     print(f"Errors: {errors}")
 
     return wpm, errors
+
+def show_leaderboard():
+    try:
+        with open("leaderboard.txt", "r") as file:
+            lines = file.readlines()
+            if not lines:
+                print("Leaderboard is empty.")
+            else:
+                print("Leaderboard:")
+                data_list = []
+                for line in lines:
+                    data = line.strip().split(",")
+                    if len(data) >= 3:
+                        data_list.append((data[0], float(data[1]), int(data[2])))
+                
+                sorted_data = sorted(data_list, key=lambda x: (-x[1], x[2]))
+
+                for i, entry in enumerate(sorted_data, start=1):
+                    name, wpm, errors = entry
+                    print(f"{i}. {name}: WPM - {wpm}, Errors - {errors}")
+    except FileNotFoundError:
+        print("Leaderboard not found. No scores yet.")
