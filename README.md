@@ -34,6 +34,7 @@ Type the words or sentences displayed on the screen as accurately and quickly as
 Once the typing session is complete, the program will display your typing speed (WPM) and accuracy.
 
 ![Output](Output.png)
+![GUiOutput](GuiOutput.png)
 
 Contributing
 Contributions are welcome! If you would like to contribute to the Terminal Typing Master, please follow these guidelines:
